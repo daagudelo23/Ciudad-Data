@@ -5,7 +5,6 @@ API Gateway RESTful desarrollada en TypeScript y Node.js para la centralización
 
 **Materia:** Tópicos Especiales de Programación (UCAB)  
 **Profesor:** Yisheng León  
-**Semestre:** [Tu semestre]
 
 ## 📋 Descripción
 API RESTful desarrollada en **Node.js** y **TypeScript** que centraliza información de fuentes abiertas internacionales (GeoNames, Banco Mundial, OMS). Permite consultar datos geográficos, estadísticas globales y transporte urbano unificado.
