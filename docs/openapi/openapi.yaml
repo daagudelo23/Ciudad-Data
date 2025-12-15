@@ -1,0 +1,86 @@
+openapi: 3.0.3
+info:
+  title: CiudadData API
+  version: 0.1.0
+  description: Gateway de datos públicos (Geo, Población, Transporte)
+servers:
+  - url: http://localhost:3000
+paths:
+  /health:
+    get:
+      summary: Comprobación de salud
+      responses:
+        '200':
+          description: OK
+  /api/geo/city/{city}:
+    get:
+      summary: Datos de ciudad (GeoNames)
+      parameters:
+        - in: path
+          name: city
+          schema: { type: string }
+          required: true
+      responses:
+        '200': { description: OK }
+  /api/geo/population/{country}:
+    get:
+      summary: Población por país (World Bank)
+      parameters:
+        - in: path
+          name: country
+          schema: { type: string }
+          required: true
+      responses:
+        '200': { description: OK }
+  /api/geo/report:
+    post:
+      summary: Crear reporte ciudadano geográfico
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title: { type: string }
+                description: { type: string }
+                location: { type: string }
+              required: [title]
+      responses:
+        '201': { description: Creado }
+  /api/transit/routes/{city}:
+    get:
+      summary: Rutas de transporte por ciudad
+      parameters:
+        - in: path
+          name: city
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: OK }
+  /api/transit/eta:
+    get:
+      summary: ETA para una parada
+      parameters:
+        - in: query
+          name: stop_id
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: OK }
+  /api/transit/incident:
+    post:
+      summary: Reportar incidente de transporte
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type: { type: string }
+                description: { type: string }
+                route: { type: string }
+              required: [type]
+      responses:
+        '201': { description: Creado }
